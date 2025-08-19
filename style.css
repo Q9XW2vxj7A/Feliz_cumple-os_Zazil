@@ -1,0 +1,31 @@
+// Confeti en ráfagas cada 2 segundos
+setInterval(() => {
+  confetti({
+    particleCount: 120,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+}, 2000);
+
+// Texto de la carta
+const textoCarta = `✨ Feliz cumpleaños, Zaz 🎂🥳 Hoy es tu día y quiero que lo disfrutes al máximo, porque personas especiales como tú se celebran en grande. Me encanta tu forma de ser, es de esas que dejan huella… y no cualquiera logra eso 😉. Que este año venga cargado de éxitos y momentos que te hagan sonreír de verdad. ✨`;
+
+// Animación tipo máquina de escribir
+const mensaje = document.getElementById('mensaje');
+const cursor = document.getElementById('cursor');
+let i = 0;
+
+function escribirLetra() {
+  if (i < textoCarta.length) {
+    mensaje.textContent += textoCarta.charAt(i);
+    let delay = 50;
+    if (textoCarta.charAt(i) === ',' || textoCarta.charAt(i) === '…') delay = 150;
+    if (textoCarta.charAt(i) === '.' || textoCarta.charAt(i) === '🎂') delay = 300;
+    i++;
+    setTimeout(escribirLetra, delay);
+  } else {
+    cursor.style.display = 'none';
+  }
+}
+
+escribirLetra();
